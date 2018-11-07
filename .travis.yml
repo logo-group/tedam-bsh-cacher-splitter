@@ -1,0 +1,18 @@
+dist: trusty
+language: java
+sudo: false
+addons:
+  sonarcloud:
+    organization: "logobusinesssolutions-github"
+    token:
+      secure: "lBhxjF30I1vE7eXVoBR0u1PHp0N4ar/agWvjANujy37k2QOBOs4oFUJmMBX8kKgWp4IkDRUHPF2AQOzvA2fRncqRM4AXtaB1xbbq87dYSJDBEMPfQRUVAvpKpdji3557HR5Z7n3Po4HPF65WbRALnJwXueZyZ4jLqZIhzpLr/GU6z27+OwML6UP0nEAfX9XALd6r0BhUiQ4qBmePsWaGtjESx55/wslRa6lMenQj1vGYpH2vLZmzjQRHPNWOfUWtHc9Wk2nQs3BA+yh4mTUW09iBkQ8F6ytPTsOiezcN+V1paN0XDRtoQGHVY/2iaSUnbt4WN1j+c33rHvDleysIXq1dV/yuSaLRU8u390m5yRJaeN8FLZVDySfVlVI3RLIyTDitXTFUqHqcw1Kwp3iuIR5v3ukU4WtbI8RnfInbFP0kR+7IhQjqCZbx1o1UFoE5G1zJ+1ncWtwOjkcBpr7BS1SLjRmLrAART0Q8WYXqmer7ZzLwxkM/UjnqkvZCYq1V80EeeVQeKjKAE0+qqlmMFHXoIDGOHBmQ1oM4/+oEnCbgR0Ps68y+MTg24XPYYoqQiZBXq2yEDv1lOKCVfHfjtvycRk4PU477V5j+Sj5Y8MnPwPBb8AWvsRJNl8qgiQInZmkCK80xq1c33RS7BwnjVrg6curtw2YV5jjGAAELyzQ="
+before_install:
+  - npm install -g newman
+script:
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+notifications:
+  email:
+    recipients:
+      - logobs@logo.com.tr
+    on_success: never
+    on_failure: always
